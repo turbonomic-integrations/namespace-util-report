@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: namespace-util-cm
+  namespace: turbointegrations
+  labels:
+    environment: prod
+    team: turbointegrations
+    app: namespace-util
+    version: 0.0.4
+data:
+  TURBO_HOST: ''
+  NS_SMTP_SERVER: ''
+  NS_SMTP_PORT: '25'
+  NS_FROM_ADDRS: ''
+  NS_TO_ADDRS: ''
+  NS_SUBJECT: 'Namespace Util Report'
+  #TAGS: ''
+  #NS_TLS: ''
+  #NS_AUTH: ''
+  #NS_BODY: ''
+  #EXCLUDED_NAMES: 'default:kube:openshift'
+  #EXCLUDE_MASTER: 'NodeRole-master:NodeRole-infra'
+  #COMMODITIES: 'VCPU:VCPURequestQuota:VCPULimitQuota:VMem:VMemRequestQuota:VMemLimitQuota'
+  #METRICS: 'average:peak:capacity:sum'
+  #NS_FILETYPE: 'csv'
+  #NS_FILENAME: 'namespaceReport_'
+  #LOGLEVEL: ''
+        

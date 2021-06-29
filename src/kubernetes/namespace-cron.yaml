@@ -1,0 +1,40 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: namespace-util
+  namespace: turbointegrations
+spec:
+  schedule: "0 1 1 * *"
+  concurrencyPolicy: Forbid
+  suspend: false
+  jobTemplate:
+    metadata:
+      generateName: namespace-util
+      labels:
+        environment: prod
+        team: turbointegrations
+        app: namespace-util
+        version: 0.0.4
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            environment: prod
+            team: turbointegrations
+            app: namespace-util
+            version: 0.0.4
+        spec:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          containers:
+            - image: turbointegrations/namespace-util-report:0.0.4
+              imagePullPolicy: IfNotPresent
+              name: namespace-util
+              envFrom:
+                - configMapRef:
+                    name: namespace-util-cm
+                - secretRef: 
+                    name: namespace-util-secret
+          restartPolicy: Never
